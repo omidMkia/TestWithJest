@@ -44,6 +44,9 @@ export default {
       editing: false,
     }
   },
+  mounted() {
+    this.$emit('update', this.question.title, this.question.body)
+  },
   methods: {
     cancel() {
       this.editing = false
@@ -52,6 +55,7 @@ export default {
       this.editing = false
       this.question.title = this.form.title
       this.question.body = this.form.body
+      this.$emit('update', this.question.title, this.question.body)
     },
   },
 }
