@@ -28,7 +28,7 @@ export default {
       type: Object,
       default: () => {
         return {
-          title: '1',
+          title: '3',
           body: '2',
         }
       },
@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-    this.$emit('update', this.question.title, this.question.body)
+    // this.$emit('update', this.question.title, this.question.body)
   },
   methods: {
     cancel() {
@@ -55,7 +55,7 @@ export default {
       this.editing = false
       this.question.title = this.form.title
       this.question.body = this.form.body
-      this.$emit('update', this.question.title, this.question.body)
+      this.$emit('emitUpdate', this.question.title, this.question.body)
     },
   },
 }

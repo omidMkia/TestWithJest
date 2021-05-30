@@ -1,7 +1,7 @@
 <template>
   <div>
-    <question-test @update="pass" />
-    <Change :h1="a" :div="b" />
+    <question-test @emitUpdate="pass" />
+    <Change :h1="x" :div="y" />
   </div>
 </template>
 
@@ -13,14 +13,14 @@ export default {
   components: { Change, QuestionTest },
   data() {
     return {
-      a: '',
-      b: '',
+      x: '',
+      y: '',
     }
   },
   methods: {
     pass(a, b) {
-      this.a = a
-      this.b = b
+      this.x = a
+      this.y = b
     },
   },
 }
