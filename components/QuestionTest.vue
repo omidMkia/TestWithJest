@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-    // this.$emit('update', this.question.title, this.question.body)
+    this.$emit('emitUpdate', this.question.title, this.question.body)
   },
   methods: {
     cancel() {

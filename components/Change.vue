@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div>
+    <div id="hOne">
       h1 text is now <b style="color: blue">{{ h1 }}</b>
     </div>
-    <div>
+    <div >
       divv text is now <b style="color: blue">{{ div }}</b>
     </div>
   </div>

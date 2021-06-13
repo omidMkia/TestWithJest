@@ -2,11 +2,8 @@ import {mount} from '@vue/test-utils'
 import QuestionTest from '@/components/QuestionTest'
 import Change from '@/components/Change'
 import question from '@/pages/question'
-import { jest } from '@jest/globals'
 
 test('integration of two component', async ()=>{
-  const pass = jest.spyOn(question.methods, 'pass')
-  const updateFn = jest.spyOn(QuestionTest.methods, 'update')
   const wrapper = mount(QuestionTest)
   const change = mount(Change)
   const ques = mount(question)
@@ -17,11 +14,15 @@ test('integration of two component', async ()=>{
   await input1.setValue('4')
   const updateBtn = wrapper.find('#update')
   await updateBtn.trigger('click')
-  expect(updateFn).toHaveBeenCalled()
+  // wrapper.vm.update()
+  console.log(wrapper.vm.question.title)
+  expect(wrapper.vm.editing).toBeFalsy()
+  console.log(wrapper.emitted().emitUpdate[1][0])
+  ques.vm.pass(wrapper.emitted().emitUpdate[1][0],wrapper.emitted().emitUpdate[1][1])
+  expect(ques.vm.x).toBe('4')
   expect(wrapper.emitted().emitUpdate).toBeTruthy()
-  expect(pass).toHaveBeenCalled()
-  // expect(wrapper.vm.question.title).toBe('4')
-  // expect(ques.vm.a).toBe('4')
-  // expect(wrapper.vm.editing).toBeFalsy()
-  // expect(change.vm.h1).toBe('4')
+  await change.setProps({h1: wrapper.emitted().emitUpdate[1][0], div: wrapper.emitted().emitUpdate[1][1]})
+  expect(change.vm.h1).toBe('4')
+  console.log(change.find('#hOne').text())
+  expect(change.find('#hOne').text()).toBe('h1 text is now 4')
 })
